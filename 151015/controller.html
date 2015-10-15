@@ -1,0 +1,32 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>This is a demo</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+
+	<style>
+		div {
+			margin-bottom: 30px;
+		}
+	</style>
+</head>
+<body ng-app="Home" ng-controller="MyController">
+	<input type="text"  ng-model="person.name"><br>
+	Hello <span ng-bind="person.name"></span>
+
+	<br>
+	<button ng-click="sayHello()">打招呼</button>
+	<br>{{ greeting }}
+	<script>
+		angular.module("Home", []).controller("MyController", function($scope) {
+			$scope.person = {
+				name: 'world'
+			}
+
+			$scope.sayHello = function() {
+				$scope.greeting = "Nice to meet u!" 
+			}
+		});
+	</script>
+</body>
+</html>
