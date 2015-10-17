@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body>
+	<button onclick="doCalc();">3+4=?</button>
+	<div id="result"></div>
+
+	<script>
+		angular.module('demo', [])
+			.factory('calculator', function() {
+				return {
+					add: function(a, b) {
+						return a + b;
+					},
+					substract: function(a, b) {
+						return a - b;
+					},
+					multiply: function(a, b) {
+						return a * b;
+					},
+					divide: function(a, b) {
+						return a / b;
+					}
+				}
+			})
+		;
+
+		function doCalc() {
+			var injector = angular.injector(['demo']),
+				mycal = injector.get('calculator'),
+				ret = mycal.add(3, 4);
+
+				document.querySelector("#result").textContent = ret;
+		}
+	</script>
+</body>
+</html>
