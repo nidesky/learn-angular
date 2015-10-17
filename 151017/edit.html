@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body ng-app="demo" ng-init="sb = {name:'somebody', gender: 'male'}">
+	<demo1 data="sb"></demo1>
+	<demo2 data="sb"></demo2>
+
+	<script>
+		angular.module('demo', [])
+			.directive('demo1', function() {
+				return {
+					restrict: 'E',
+					template: "<div></div>",
+					replace: true,
+					link: function(scope, ele, attrs) {
+						window.scope = scope;
+						var model = attrs.data;
+
+						ele.append('name: <input type="text" field="name"><br/>')
+							.append('gender: <input type="text" field="gender">');
+
+						ele.find("input").on("keyup", function(ev){
+							console.info(ev);
+							var field = ev.target.getAttribute('field');
+
+							scope[model][field] = ev.target.value;
+							scope.$apply("");
+						});
+
+					}
+				}
+			})
+			.directive('demo2', function() {
+				return {
+					restrict: 'E',
+					template: '<div></div>',
+					replace: true,
+					link: function(scope, ele, attrs) {
+						var model = attrs.data;
+
+						scope.$watch(model, function(nv) {
+							var cnt = JSON.stringify(nv, null, "  ");
+
+							ele.html('<pre>' + cnt + '</pre>');	
+						}, true);
+						
+					}
+
+				}
+			})
+	</script>
+</body>
+</html>

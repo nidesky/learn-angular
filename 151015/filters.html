@@ -1,0 +1,24 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body ng-app="" ng-init="users = [{name:'tom',age:16},
+{name:'jerry',age:20}]">
+
+	<!-- ng-filter: uppercase -->
+	请输入： <input type="text" nG-model="name">
+	结果为：{{ name | uppercase}}
+	<br/>
+
+	<!-- ng-filter: filter -->
+	输入过滤 <input type="text" ng-model="user">
+	<ul>
+		<li>姓名，年龄</li>
+		<li ng-repeat="x in users | filter:user">
+			{{ x.name + ', ' + x.age }}
+		</li>
+	</ul>
+</body>
+</html>

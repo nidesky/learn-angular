@@ -1,0 +1,41 @@
+<html ng-app="myclock">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+	
+	<style>
+		.clock {
+			margin: 0 auto;
+			padding: 10px;
+			width: 340px;
+			text-align: center;
+			background-color: #000;
+			line-height: 30px;
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<clock></clock>	
+
+	<script>
+		angular.module('myclock', [])
+			.directive('clock', function() {
+				return {
+					restrict: 'E',
+					replace: true,
+					template: "<div class='clock'></div>",
+					link: function(scope, element, attrs) {
+						setInterval(function() {
+							var d = new Date();
+
+							element.text(d).toString();
+						}, 1000);
+					}
+				};
+			})
+	</script>
+</body>
+</html>
