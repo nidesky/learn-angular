@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body>
+	<button id="bootstrap">手动引导</button><br>
+	<p>这是一张图片！</p>
+	<demo></demo>
+
+	<script>
+		angular.module('demo', [])
+			.directive('demo', function() {
+				return {
+					restrict: 'E',
+					replace: true,
+					template: '<img src="http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif">'
+				}
+			});
+
+		angular.element(document).ready(function() {
+			var e = document.querySelector('#bootstrap');
+			angular.element(e).on('click', function() {
+				angular.bootstrap(document, ['demo']);
+			})
+		});
+	</script>
+</body>
+</html>
