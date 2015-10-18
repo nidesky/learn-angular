@@ -27,7 +27,8 @@
 	<div ng-controller="demo2">
 		<input type="text" ng-model="user" id="">
 		<br>
-		<span>{{ reversedMessage(user) }}</span>
+		<span>{{ user | reverse }}</span><br>
+		<span>{{ reversedMessage(user) }}</span><br>
 	</div>
 	
 	<script>
@@ -35,6 +36,12 @@
 
 		myApp.factory('Data', function() {
 			return "John"
+		});
+
+		myApp.filter('reverse', function() {
+			return function(text) {
+				return text.split("").reverse().join("");
+			}
 		})
 
 		myApp
