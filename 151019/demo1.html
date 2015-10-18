@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+
+	<style>
+		div {
+			margin-bottom: 10px;
+			border: 2px solid blue;
+		}
+	</style>
+</head>
+<body ng-app="demo" ng-init="user='hello world!'">
+
+	<input type="text" ng-model="user" id="">
+	<br>
+	<span>{{ user }}</span>
+	<br>
+	
+	<div ng-controller="demo1">
+		<input type="text" ng-model="user" id="">
+		<br>
+		<span>{{ user }}</span>
+	</div>
+
+	<div ng-controller="demo2">
+		<input type="text" ng-model="user" id="">
+		<br>
+		<span>{{ reversedMessage(user) }}</span>
+	</div>
+	
+	<script>
+		var myApp = angular.module('demo', []);
+
+		myApp.factory('Data', function() {
+			return "John"
+		})
+
+		myApp
+			.controller('demo1', function($scope, Data) {
+				$scope.user = Data;
+			})
+			.controller('demo2', function($scope, Data) {
+				$scope.user = Data;
+
+				$scope.reversedMessage = function(message) {
+					return message.split("").reverse().join("");
+				}
+			})
+
+	</script>
+</body>
+</html>
