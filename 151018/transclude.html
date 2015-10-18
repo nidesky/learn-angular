@@ -1,0 +1,31 @@
+<html ng-app="demo">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="demo1">
+		<dd-dialog>
+			<p>Check out the contents, {{ name }}!</p>
+			<p><button>Ok, I will</button></p>
+		</dd-dialog>	
+	</div>
+	
+
+	<script>
+		angular.module('demo', [])
+			.controller('demo1', ["$scope", function($scope) {
+				$scope.name = "Mr.Ding";
+			}])
+			.directive("ddDialog", function() {
+				return {
+					restrict: 'E',
+					replace: true,
+					transclude: true,
+					template: "<div class='ez-dialog'><div class='header'>alert</div><div class='content' ng-transclude></div></div>"
+				}
+			})
+	</script>
+</body>
+</html>

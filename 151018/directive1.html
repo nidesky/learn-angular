@@ -1,0 +1,34 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body ng-app="demo">
+
+	<span demo> This is a span </span>
+	<button demo> This is a button </button>
+	<div demo> This is a div </div>
+	<textarea demo> This is a textarea </textarea>
+	
+	<script>
+		var demo1 = function() {
+			return {
+				restrict: 'A',
+				link: function(scope, ele, attrs) {
+					ele.on("mouseover", function() {
+						ele.css({outline:"#ff0000 dotted thick"});
+					})
+					.on("mouseout", function() {
+						ele.css({outline:"none"})
+					})
+				}
+			}
+		};
+		angular.module('demo', [])
+			.directive('demo', demo1);
+
+
+	</script>
+</body>
+</html>
