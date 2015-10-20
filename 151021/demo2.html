@@ -1,0 +1,61 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Directive to directive communication</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body ng-app="demo">
+	
+	<superhero speed>Speed</superhero>
+	<superhero speed strength>Strength</superhero>
+
+	<script>
+		
+		var app = angular.module("demo", []);
+
+		app.directive("superhero", function() {
+			return {
+				restrict: "E",
+
+				scope: {},
+
+				controller: function($scope) {
+					$scope.abilities = []
+
+					this.addStrength = function() {
+						$scope.abilities.push("strength");
+					}
+
+					this.addSpeed = function() {
+						$scope.abilities.push('speed')
+					}
+				},
+
+				link: function(scope, ele) {
+					ele.bind("mouseenter", function() {
+						console.log(scope.abilities)
+					})
+				}
+			}
+		})
+
+		app.directive("strength", function() {
+			return {
+				require: "superhero",
+				link: function(scope, ele, attrs, superheroCtrl) {
+					superheroCtrl.addStrength();
+				}
+			}
+		})
+
+		app.directive("speed", function() {
+			return {
+				require: "superhero",
+				link: function(scope, ele, attrs, superheroCtrl) {
+					superheroCtrl.addSpeed();
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Directives talking to Controllers</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body ng-app="demo">
+	<div ng-controller="demoCtrl">
+		<span enter>
+			Hei, talk to controllers.
+		</span>
+	</div>
+
+
+	<script>
+		var app = angular.module("demo", []);
+
+		app.controller("demoCtrl", function($scope) {
+			$scope.loadMoreTweets = function() {
+				alert("Ctrl loading tweets.");
+			};
+		});
+
+		app.directive("enter", function() {
+			return function(scope, element, attrs) {
+				element.bind("mouseenter", function() {
+					scope.$apply('loadMoreTweets()');
+				})
+			}
+		})
+	</script>
+</body>
+</html>
