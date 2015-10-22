@@ -1,0 +1,33 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Isolate scope & </title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="http://apps.bdimg.com/libs/angular.js/1.3.8/angular.js"></script>
+</head>
+<body ng-app="drinkApp">
+	
+	<div ng-controller="AppCtrl">
+		<drink flavor="hello()"></drink>
+	</div>
+
+	<script>
+		var app = angular.module("drinkApp", []);
+
+		app.controller("AppCtrl", function($scope) {
+			$scope.hello = function() {
+				alert('I say hi!');
+			}
+		});
+
+		app.directive("drink", function() {
+			return {
+				scope: {
+					flavor: "&"
+				},
+				template: '<button class="btn btn-primary" ng-click="flavor()">Say Hello</button>',
+			}
+		})
+	</script>
+</body>
+</html>

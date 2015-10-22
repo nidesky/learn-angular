@@ -36,7 +36,7 @@ var reload = browserSync.reload;
 gulp.task('serve', function () {
     browserSync.init({
         server: {
-            baseDir: './151021/'
+            baseDir: './151022/'
         } 
     });
     // gulp.watch('app/scss/*.scss', ['sass', reload]);
